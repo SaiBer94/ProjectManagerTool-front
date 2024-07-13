@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:5000/users/add', userData);
+      const response = await axios.post('http://localhost:4500/api/user/register', userData);
       setUser(response.data);
       setIsLoggedIn(true);
       console.log('Registration successful:', response.data);
@@ -20,7 +20,7 @@ export const UserProvider = ({ children }) => {
 
   const login = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:5000/users/login', userData);
+      const response = await axios.post('http://localhost:4500/api/user/login', userData);
       setUser(response.data);
       setIsLoggedIn(true);
       console.log('Login successful:', response.data);
