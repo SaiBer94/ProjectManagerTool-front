@@ -5,7 +5,7 @@ import { UserContext } from '../../Context/UserContext';
 
 export const Home = () => {
   const [mode, setMode] = useState('login'); // 'login' or 'register'
-  const { register } = useContext(UserContext);
+  const { register,user } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
@@ -14,6 +14,12 @@ export const Home = () => {
   const toggleMode = () => {
     setMode(mode === 'login' ? 'register' : 'login');
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate('/dashboard');
+    }
+  }, [user, navigate]);
 
 
   const handleSubmit = async (e) => {
