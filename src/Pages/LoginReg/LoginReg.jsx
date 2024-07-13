@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import './LoginReg.css';
+import { UserContext } from '../../Context/UserContext';
 
 export const Home = () => {
   const [mode, setMode] = useState('login'); // 'login' or 'register'
+  const { register } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
 
   const toggleMode = () => {
     setMode(mode === 'login' ? 'register' : 'login');
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = mode === 'register' ? { username, email, phone, password } : { email, password };
-
+    const user = mode === 'register' ? { name, email, phone, password } : { email, password };
     try {
       if (mode === 'register') {
-        const response = await axios.post('http://localhost:5000/users/add', user);
-        console.log('Registration successful:', response.data);
+        const response = await register(user);
       } else {
-        const response = await axios.post('http://localhost:5000/users/login', user);
-        console.log('Login successful:', response.data);
+        // const response = await axios.post('http://localhost:5000/users/login', user);
+        // console.log('Login successful:', response.data);
       }
     } catch (error) {
       console.error('There was an error!', error);
@@ -47,12 +48,14 @@ export const Home = () => {
           {mode === 'register' && (
             <>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="name">Username</label>
                 <input
                   type="text"
-                  id="username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  id="name"
+                  value={name}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                  }}
                   required
                 />
               </div>
@@ -62,7 +65,9 @@ export const Home = () => {
                   type="tel"
                   id="phone"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    setPhone(e.target.value);
+                  }}
                   required
                 />
               </div>
@@ -74,7 +79,9 @@ export const Home = () => {
               type="email"
               id="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
               required
             />
           </div>
@@ -84,7 +91,9 @@ export const Home = () => {
               type="password"
               id="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               required
             />
           </div>

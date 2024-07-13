@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
 
   const register = async (userData) => {
     try {
-      const response = await axios.post('http://localhost:4500/api/user/register', userData);
+      const response = await axios.post('http://localhost:4500/api/user/register',userData);
       setUser(response.data);
       setIsLoggedIn(true);
       console.log('Registration successful:', response.data);
