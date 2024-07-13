@@ -1,0 +1,143 @@
+:root {
+  --primary-color: #3b5998;
+  --secondary-color: #8b9dc3;
+  --background-color: #f7f7f7;
+  --button-gradient-blue: linear-gradient(45deg, #4267b2, #3b5998);
+  --button-gradient-green: linear-gradient(45deg, #4caf50, #388e3c);
+  --text-color: #333;
+}
+
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.main-title {
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Drop shadow */
+}
+
+.main-title h1 {
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.form-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.form-container:hover {
+  transform: translateY(-10px);
+}
+
+.title-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: var(--secondary-color);
+  text-align: center;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  animation: fadeInUp 0.5s ease-in-out;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  animation: fadeInUp 0.6s ease-in-out;
+}
+
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background: linear-gradient(to right, #4caf50, #4267b2); /* Green to Blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  animation: fadeInUp 0.7s ease-in-out;
+}
+
+button:hover {
+  background: linear-gradient(to right, #4267b2, #4caf50); /* Blue to Green on hover */
+  transform: translateY(-5px);
+}
+
+p {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--primary-color);
+  cursor: pointer;
+  animation: fadeInUp 0.8s ease-in-out;
+}
+
+.clickable {
+  color: var(--primary-color);
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+  text-decoration: underline;
+}
+
+.clickable:hover {
+  color: #365899;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
