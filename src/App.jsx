@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Home } from './Pages/LoginReg/LoginReg'
+import { LoginReg } from './Pages/LoginReg/LoginReg'
 import { Dashboard} from './Pages/Dashboard/Dashboard'
 import { UserProvider } from '../src/Context/UserContext'
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -14,7 +14,8 @@ function App() {
     <UserProvider>
        <BrowserRouter>
          <Routes>
-          <Route path='/' element={<Dashboard/>}/>
+          <Route path='/' element={<LoginReg/>}/>
+          <Route path='/dashboard' element={<Dashboard/>}/>
          </Routes>
        </BrowserRouter>
      </UserProvider>

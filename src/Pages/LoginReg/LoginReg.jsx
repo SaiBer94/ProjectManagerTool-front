@@ -1,11 +1,14 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import './LoginReg.css';
+import { Navigate } from 'react-router-dom';
 import { UserContext } from '../../Context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
-export const Home = () => {
+export const LoginReg = () => {
+  const navigate = useNavigate();
   const [mode, setMode] = useState('login'); // 'login' or 'register'
-  const { register,user } = useContext(UserContext);
+  const { register,user,login } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
@@ -24,13 +27,14 @@ export const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = mode === 'register' ? { name, email, phone, password } : { email, password };
+    const userF = mode === 'register' ? { name, email, phone, password } : { email, password };
     try {
       if (mode === 'register') {
-        const response = await register(user);
+         await register(userF);
+         setMode("login")
       } else {
-        // const response = await axios.post('http://localhost:5000/users/login', user);
-        // console.log('Login successful:', response.data);
+        const response = await login(userF)
+        
       }
     } catch (error) {
       console.error('There was an error!', error);
