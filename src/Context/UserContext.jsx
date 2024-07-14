@@ -12,11 +12,13 @@ export const UserProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       const tokenData = JSON.parse(atob(token.split('.')[1]));
-      const expirationTime = tokenData.exp * 12000;
+      const expirationTime = tokenData.exp * 1000;
       const currentTime = Date.now();
       if (currentTime > expirationTime) {
-        // Token is expired, perform logout
-        // logoutUser();
+            setUser(null);
+            setIsLoggedIn(false);
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
       }
     }
   };

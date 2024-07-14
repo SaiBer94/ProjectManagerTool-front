@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Dashboard.css'; // Adjust the path as necessary
+import { UserContext } from '../../Context/UserContext';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const Dashboard = () => {
+    const {user} = useContext(UserContext);
+    const navigate = useNavigate();
+    const [isPopUpProjects, setIsPopUpProjects] = useState(false);
     const handleMenuClick = (menuName) => {
         console.log(`Clicked on ${menuName}`);
         // Add logic to handle menu item clicks, such as changing active state or navigating
     };
+
+    useEffect(()=>{
+        if(!user){
+        console.log("h")
+        }
+        else{
+            console.log("d")
+        }
+    })
+    useEffect(() => {
+        if (!user) {
+          navigate('/');
+        }
+      }, [user,navigate]);
+
+    const openProjectPopUp = () =>{
+        setIsPopUpProjects(!isPopUpProjects);
+        console.log(isPopUpProjects)
+    }
 
     return (
         <div className="app-container">
@@ -43,10 +67,10 @@ export const Dashboard = () => {
             </div>
             <div className="dashboard-container">
                 <div className="greeting">
-                    <h1>Hello Shai!</h1>
+                    <h1>Welcome Back, !</h1>
                 </div>
                 <div className="main-buttons">
-                    <button>Projects</button>
+                    <button onClick={openProjectPopUp}>Projects</button>
                     <button>Stuff</button>
                     {/* Add more buttons as needed */}
                 </div>
