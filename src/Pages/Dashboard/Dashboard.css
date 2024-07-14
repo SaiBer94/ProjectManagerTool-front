@@ -26,7 +26,10 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 20px 0;
-  height: 100%; /* Stretch to 100% height */
+  height: 100vh; /* Stretch to 100% height */
+  position: fixed; /* Fix to the left side */
+  top: 0;
+  left: 0;
 }
 
 .sidebar-logo {
@@ -77,13 +80,13 @@ body {
 }
 
 .dashboard-container {
-  flex: 1; /* Take remaining space */
+  margin-left: 250px; /* Make space for the fixed sidebar */
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  margin-top: 5%;
+  width: calc(100% - 250px); /* Ensure the main content fits within the remaining space */
 }
 
 .greeting {
@@ -129,8 +132,8 @@ body {
 
   .sidebar {
       width: 100%;
-      padding: 20px 0;
-      align-items: flex-start;
+      height: auto;
+      position: relative; /* Change position for mobile view */
   }
 
   .sidebar-menu {
@@ -146,6 +149,8 @@ body {
   }
 
   .dashboard-container {
+      margin-left: 0; /* Reset margin for mobile view */
+      width: 100%; /* Full width for mobile view */
       padding: 20px;
   }
 }
